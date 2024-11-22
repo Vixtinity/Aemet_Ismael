@@ -1,7 +1,7 @@
 package arrays;
 import java.util.Scanner;
 
-public class Notas {
+public class Examen_Aemet {
     public static Scanner entrada = new Scanner(System.in); 
     static int NCIUDADES = ;
     static int MODULOS = 4;
