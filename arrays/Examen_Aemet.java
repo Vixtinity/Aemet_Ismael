@@ -10,17 +10,16 @@ public class Examen_Aemet {
     static double[][] ifltemp = new double[iflNCIUDADES][iflNDIAS];
 
     public static void main(String[] args){
-        iflGenerarTemperaturas();
-        iflImprimirNotasTabla();
+        iflGenerarRegistroTemp();
+        iflImprimirTempTabla();
         iflestadisitica(null);
-
     }
-    public static double[] estadisitica(String Ciudades){
+    public static double[] iflestadisitica(String Ciudades){
         double[] ifldatos = new double[3];
         double iflmax;
         double iflmin;
         double iflmedia=0;
-        int iflJCiu = getIndexCiudades(Ciudades);
+        int iflJCiu = iflgetIndexCiudades(Ciudades);
         iflmax = Examen_Aemet.ifltemp[iflJCiu][0];
         iflmin = Examen_Aemet.ifltemp[iflJCiu][0];
         for (int i=1; i<iflNDIAS; i++){
@@ -30,52 +29,49 @@ public class Examen_Aemet {
             if (Examen_Aemet.ifltemp[iflJCiu][i] < iflmin){
                 iflmin = Examen_Aemet.ifltemp[iflJCiu][i];
             }
-            iflmedia= iflmedia + Examen_Aemet.ifltemp[JCiu][i];
+            iflmedia= iflmedia + Examen_Aemet.ifltemp[iflJCiu][i];
         }    
         ifldatos[0] = iflmax;
-        datos[1] = min;
-        datos[2] = media/NDIAS;
-        System.out.println(datos[0] + " " + datos[1] + " " + datos[2]);
-        return datos;
+        ifldatos[1] = iflmin;
+        ifldatos[2] = iflmedia/iflNDIAS;
+        System.out.println(ifldatos[0] + " " + ifldatos[1] + " " + ifldatos[2]);
+        return ifldatos;
     }
-    public static int getIndexCiudades(String Ciudades){
-        int index = -1; // sup que no se encuentra
-        for(int i=0; (i<NCIUDADES) && (index == -1); i++){ //ejecuto mientras no se encuentre
-            if (Examen_Aemet.ciudad[i]== Ciudades){
+    public static int iflgetIndexCiudades(String iflCiudades){
+        int index = 1;
+        for(int i=0; i<iflNCIUDADES; i++){ //ejecuto mientras no se encuentre
+            if (Examen_Aemet.iflciudad[i]== iflCiudades){
                 index = i;
             }
         }
         return index;
     }
     
-    public static void iflGenerarTemperaturas(){
+    public static void iflGenerarRegistroTemp(){
         double temp;
-        for (int i=0; i<NCIUDADES; i++){
-            for (int j=0; j<NDIAS; j++){
-                temp = Math.random()*10;
-                Examen_Aemet.temp[i][j]=Math.round(temp*100.00)/100.00;;
+        for (int i=0; i<iflNCIUDADES; i++){
+            for (int j=0; j<iflNDIAS; j++){
+                temp = Math.random()*40;
+                Examen_Aemet.ifltemp[i][j]=Math.round(temp*100)/100;;
             }
         }
     }
 
-    public static void ImprimirNotasTabla(){
-        System.out.println("------ LISTADO DE NOTAS --------------");
+    public static void iflImprimirTempTabla(){
+        System.out.println("------ LISTADO DE TEMPERATURA --------------");
         System.out.printf("%20s", " ");
-        for (int i=0; i<NCIUDADES; i++){
-            System.out.printf("%10s", ciudad[i]);
+        for (int i=0; i<iflNCIUDADES; i++){
+            System.out.printf("%10s", iflciudad[i]);
         };
         System.out.println();
         System.out.println();
-        for (int j=0; j<NDIAS; j++){
-            System.out.printf("%20s", Examen_Aemet.dia[j]);
-            for (int i=0; i<NCIUDADES; i++){
-                System.out.printf("%10.2f", Examen_Aemet.temp[i][j]);
+        for (int j=0; j<iflNDIAS; j++){
+            System.out.printf("%20s", Examen_Aemet.ifldia[j], Examen_Aemet.ifldia[j]);
+            for (int i=0; i<iflNCIUDADES; i++){
+                System.out.printf("%10.2f", Examen_Aemet.ifltemp[i][j], Examen_Aemet.ifltemp[i][j], Examen_Aemet.ifltemp[i][j]);
             }
             System.out.println();
             System.out.println();
         }
     }
-
-    
-
 }
