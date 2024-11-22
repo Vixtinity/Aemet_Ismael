@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Notas {
     public static Scanner entrada = new Scanner(System.in); 
-    static int ALUMNOS = 5;
+    static int NCIUDADES = ;
     static int MODULOS = 4;
     static String[] alumnos = { "Jose", "Ana", "Maria", "Luis", "Noelia" };
     static String[] modulos = { "Programacion", "Redes", "Bases de Datos",  "Desarrollo Servidor" };
